@@ -45,54 +45,14 @@
     <!-- Blog Grid Section -->
     <section class="section">
       <div class="container">
-        <div class="course-grid">
-          <!-- Featured Career Article Shell 1 -->
-          <article class="course-card animate-on-scroll">
-            <div class="course-card-image" style="background: rgba(var(--primary-rgb), 0.1); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-              📊
+        <div id="blog-grid" class="course-grid">
+            <!-- Loading state -->
+            <div id="blog-loading" style="grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--muted-foreground);">
+              Loading articles...
             </div>
-            <div class="course-card-body">
-              <h3 class="course-card-title"><a href="../courses/data-analytics/">Career Guide: How to Become a Data Analyst</a></h3>
-              <p class="course-card-desc">Discover essential skills, tools like Excel, SQL, Python, Power BI, and steps required to build a successful career in data analytics.</p>
-              <div class="course-card-footer">
-                <span style="font-size: 0.875rem; color: var(--muted-foreground);">Category: Data Analytics</span>
-                <a href="../courses/data-analytics/" class="btn btn-outline btn-sm">Read More</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Featured Career Article Shell 2 -->
-          <article class="course-card animate-on-scroll delay-1">
-            <div class="course-card-image" style="background: rgba(var(--secondary-rgb), 0.1); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-              🚀
-            </div>
-            <div class="course-card-body">
-              <h3 class="course-card-title"><a href="../courses/ai-digital-marketing/">The Role of AI in Modern Digital Marketing</a></h3>
-              <p class="course-card-desc">Learn how artificial intelligence tools are reshaping search engine optimization, content creation, advertising campaigns, and social media analytics.</p>
-              <div class="course-card-footer">
-                <span style="font-size: 0.875rem; color: var(--muted-foreground);">Category: Digital Marketing</span>
-                <a href="../courses/ai-digital-marketing/" class="btn btn-outline btn-sm">Read More</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Featured Career Article Shell 3 -->
-          <article class="course-card animate-on-scroll delay-2">
-            <div class="course-card-image" style="background: rgba(var(--primary-rgb), 0.15); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-              💼
-            </div>
-            <div class="course-card-body">
-              <h3 class="course-card-title"><a href="../courses/sap/">Why SAP Skills Are Essential for Corporate Careers</a></h3>
-              <p class="course-card-desc">Explore the demand for SAP FICO, MM, SD, and HCM module specialists in top enterprise organizations worldwide.</p>
-              <div class="course-card-footer">
-                <span style="font-size: 0.875rem; color: var(--muted-foreground);">Category: ERP & Business</span>
-                <a href="../courses/sap/" class="btn btn-outline btn-sm">Read More</a>
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- CTA Section -->
     <section class="cta-section section">

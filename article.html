@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article | Rama Skill Academy</title>
+  <meta name="description" content="Rama Skill Academy Blog Article">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+
+  <main style="padding-top: 100px; min-height: 80vh;">
+    <div class="container" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem;">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 2rem;">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="blog.html">Blog</a>
+        <span class="separator">/</span>
+        <span class="current" id="breadcrumb-title">Article</span>
+      </nav>
+
+      <div id="article-loading" style="text-align: center; padding: 4rem; color: var(--muted-foreground);">
+        Loading article...
+      </div>
+
+      <article id="article-content" style="display: none;">
+        <h1 id="article-title" style="margin-bottom: 1rem; font-size: 2.5rem; line-height: 1.2;"></h1>
+        <div style="color: var(--muted-foreground); margin-bottom: 2rem; font-size: 0.9rem;">
+          Published by <span id="article-author" style="font-weight: 500;"></span> in <span id="article-category"></span> • <span id="article-date"></span>
+        </div>
+        
+        <div id="article-image-container" style="margin-bottom: 2rem; border-radius: 8px; overflow: hidden; display: none;">
+          <img id="article-image" src="" alt="" style="width: 100%; height: auto; max-height: 400px; object-fit: cover;">
+        </div>
+
+        <div id="article-body" style="line-height: 1.7; font-size: 1.1rem; color: var(--text);">
+          <!-- Content injected here -->
+        </div>
+      </article>
+
+      <div id="article-error" style="display: none; text-align: center; padding: 4rem; color: var(--danger);">
+        <h2>Article Not Found</h2>
+        <p>The article you are looking for does not exist or has been removed.</p>
+        <a href="blog.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Blog</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" id="site-footer"></footer>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('slug');
+      
+      const loading = document.getElementById('article-loading');
+      const content = document.getElementById('article-content');
+      const error = document.getElementById('article-error');
+      
+      if (!slug || typeof GOOGLE_APPS_SCRIPT_URL === 'undefined' || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE')) {
+        loading.style.display = 'none';
+        error.style.display = 'block';
+        if (!slug) error.innerHTML = '<h2>Invalid Article URL</h2><a href="blog.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Blog</a>';
+        else error.innerHTML = '<h2>Configuration Error</h2><p>Please configure the GOOGLE_APPS_SCRIPT_URL in script.js.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getArticle', slug: slug })
+        });
+        const result = await response.json();
+
+        if (result.success && result.data) {
+          const article = result.data;
+          
+          // Update Meta Tags (Best effort for JS client-side rendering)
+          document.title = article.seoTitle || article.title + " | Rama Skill Academy";
+          document.querySelector('meta[name="description"]')?.setAttribute("content", article.metaDescription || article.excerpt);
+          
+          // Update DOM
+          document.getElementById('breadcrumb-title').textContent = article.title;
+          document.getElementById('article-title').textContent = article.title;
+          document.getElementById('article-author').textContent = article.author || 'Rama Skill Academy';
+          document.getElementById('article-category').textContent = article.category;
+          document.getElementById('article-date').textContent = new Date(article.publishDate || article.createdDate).toLocaleDateString();
+          
+          if (article.featuredImage) {
+            const imgContainer = document.getElementById('article-image-container');
+            const img = document.getElementById('article-image');
+            img.src = article.featuredImage;
+            img.alt = article.imageAlt || article.title;
+            imgContainer.style.display = 'block';
+          }
+          
+          document.getElementById('article-body').innerHTML = article.content;
+          
+          loading.style.display = 'none';
+          content.style.display = 'block';
+        } else {
+          loading.style.display = 'none';
+          error.style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        loading.style.display = 'none';
+        error.style.display = 'block';
+        error.innerHTML = '<h2>Connection Error</h2><p>Unable to connect to the blog database.</p><a href="blog.html" class="btn btn-primary" style="margin-top: 1rem;">Back to Blog</a>';
+      }
+    });
+  </script>
+</body>
+</html>

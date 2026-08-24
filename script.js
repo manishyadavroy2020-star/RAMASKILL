@@ -1,3 +1,7 @@
+// --- BLOG CMS CONFIGURATION ---
+// Paste your deployed Google Apps Script Web App URL here
+const GOOGLE_APPS_SCRIPT_URL = \'https://script.google.com/macros/s/AKfycby3h6KNvWvs8kYbIbzaiTpcKY4rVdgl2HUmp0CYk2MvplsCDv_bEm-XNnhebDPk1IcF0Q/exec\';
+
 // ============================================
 // RAMA SKILL ACADEMY — Centralized Data & SEO Config
 // Single Source of Truth for Content & Metadata
@@ -1417,3 +1421,51 @@ window.closeLightbox = closeLightbox;
 document.addEventListener('DOMContentLoaded', initPage);
 
 
+
+// ---- Blog Rendering Logic ----
+async function renderBlogPage() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+  
+  if (typeof GOOGLE_APPS_SCRIPT_URL === 'undefined' || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE')) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center">Please configure the GOOGLE_APPS_SCRIPT_URL in script.js to view blog posts.</div>';
+    return;
+  }
+  
+  try {
+    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'getArticles' })
+    });
+    const result = await response.json();
+    
+    if (result.success && result.data.length > 0) {
+      grid.innerHTML = result.data.map((article, index) => {
+        const date = new Date(article.publishDate || article.updatedDate).toLocaleDateString();
+        return `
+          <article class="course-card animate-on-scroll ${index > 0 ? 'delay-1' : ''}">
+            <a href="article.html?slug=${article.slug}" class="course-card-image" style="background: rgba(var(--primary-rgb), 0.1); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              ${article.featuredImage ? `<img src="${article.featuredImage}" alt="${article.imageAlt || article.title}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="font-size: 3rem;">📰</div>`}
+            </a>
+            <div class="course-card-body">
+              <h3 class="course-card-title"><a href="article.html?slug=${article.slug}">${article.title}</a></h3>
+              <p class="course-card-desc">${article.excerpt}</p>
+              <div class="course-card-footer">
+                <span style="font-size: 0.875rem; color: var(--muted-foreground);">${article.category} • ${date}</span>
+                <a href="article.html?slug=${article.slug}" class="btn btn-outline btn-sm">Read More</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+      if (typeof initScrollAnimations === 'function') initScrollAnimations();
+    } else {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center">No articles found.</div>';
+    }
+  } catch (err) {
+    console.error('Blog Fetch Error:', err);
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center">Unable to connect to the blog database. Please try again.</div>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderBlogPage);

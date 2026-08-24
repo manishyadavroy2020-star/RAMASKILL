@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin | Rama Skill Academy</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-view" class="view active">
+    <div class="login-card">
+      <div class="logo">R</div>
+      <h2>CMS Login</h2>
+      <p>Enter your secure admin token</p>
+      <form id="login-form">
+        <input type="password" id="admin-token" placeholder="Secret Token" required>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <p id="login-error" class="error-text hidden">Invalid token or connection error.</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD / APP -->
+  <div id="app-view" class="view hidden">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-small">R</div>
+        <span class="brand">Rama Admin</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="dashboard">Articles</a>
+        <a href="#" class="nav-item" data-view="categories">Categories</a>
+        <a href="#" class="nav-item" data-view="settings">Settings</a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="btn-text">View Site ↗</a>
+        <button id="logout-btn" class="btn-text">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- DASHBOARD: Articles List -->
+      <div id="view-dashboard" class="content-panel active">
+        <div class="panel-header">
+          <h1>Articles</h1>
+          <button id="btn-new-article" class="btn btn-primary">+ New Article</button>
+        </div>
+        
+        <div class="filters">
+          <input type="text" id="search-articles" placeholder="Search articles...">
+          <select id="filter-status">
+            <option value="All">All Status</option>
+            <option value="Published">Published</option>
+            <option value="Draft">Draft</option>
+          </select>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table" id="articles-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Injected via JS -->
+            </tbody>
+          </table>
+          <div id="articles-loading" class="loading">Loading...</div>
+        </div>
+      </div>
+
+      <!-- EDITOR: Create / Edit Article -->
+      <div id="view-editor" class="content-panel hidden">
+        <div class="panel-header">
+          <h1 id="editor-title">New Article</h1>
+          <div>
+            <button id="btn-cancel-edit" class="btn btn-secondary">Cancel</button>
+            <button id="btn-save-draft" class="btn btn-secondary">Save Draft</button>
+            <button id="btn-publish" class="btn btn-primary">Publish</button>
+          </div>
+        </div>
+
+        <div class="editor-layout">
+          <!-- Main Editor Column -->
+          <div class="editor-main">
+            <form id="article-form">
+              <input type="hidden" id="edit-id">
+              <input type="hidden" id="edit-slug">
+              
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="edit-title" placeholder="e.g., What Is Data Analytics?" required>
+              </div>
+
+              <div class="form-group">
+                <label>Content</label>
+                <!-- Simple textarea for now, can be replaced by rich text -->
+                <textarea id="edit-content" rows="15" placeholder="Write your article content here... (HTML supported)" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Excerpt</label>
+                <textarea id="edit-excerpt" rows="3" placeholder="Brief summary of the article"></textarea>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sidebar Editor Column -->
+          <div class="editor-sidebar">
+            
+            <div class="card">
+              <h3>Publishing</h3>
+              <div class="form-group">
+                <label>Status</label>
+                <select id="edit-status">
+                  <option value="Draft">Draft</option>
+                  <option value="Published">Published</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <select id="edit-category">
+                  <!-- Injected via JS -->
+                </select>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Media</h3>
+              <div class="form-group">
+                <label>Featured Image URL</label>
+                <input type="text" id="edit-image" placeholder="https://...">
+              </div>
+              <div class="form-group">
+                <label>Image Alt Text</label>
+                <input type="text" id="edit-image-alt" placeholder="Describe the image">
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>SEO Details</h3>
+              <div class="form-group">
+                <label>SEO Title</label>
+                <input type="text" id="edit-seo-title" placeholder="Title for search engines">
+              </div>
+              <div class="form-group">
+                <label>Meta Description</label>
+                <textarea id="edit-meta-desc" rows="3" placeholder="Meta description"></textarea>
+              </div>
+              
+              <div class="seo-preview">
+                <h4>Google Preview</h4>
+                <div class="seo-preview-box">
+                  <div class="seo-url">ramaskillacademy.com > blog > <span id="preview-slug">your-slug</span></div>
+                  <div class="seo-title-preview" id="preview-title">Your SEO Title</div>
+                  <div class="seo-desc-preview" id="preview-desc">Your meta description will appear here. It should be engaging and informative.</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings / Categories Placeholder Views -->
+      <div id="view-categories" class="content-panel hidden">
+        <h1>Categories</h1>
+        <p>Categories can be managed via the Google Sheet directly for now, or via this UI in future updates.</p>
+        <button class="btn btn-secondary" onclick="fetchCategories()">Refresh Categories</button>
+      </div>
+
+      <div id="view-settings" class="content-panel hidden">
+        <h1>Settings</h1>
+        <p>Settings can be managed via the Google Sheet Settings tab.</p>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden">Saved successfully!</div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
