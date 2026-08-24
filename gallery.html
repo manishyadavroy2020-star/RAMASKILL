@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rama Skill Academy Gallery | Training & Learning</title>
+  <meta name="description" content="View photos and moments from Rama Skill Academy training sessions, workshops, student events, and learning activities in Durgapur.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ramaskillacademy.com/gallery.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ramaskillacademy.com/gallery/">
+  <meta property="og:site_name" content="Rama Skill Academy">
+  <meta property="og:title" content="Rama Skill Academy Gallery | Training & Learning">
+  <meta property="og:description" content="View photos and moments from Rama Skill Academy training sessions, workshops, and events.">
+  <meta property="og:image" content="https://ramaskillacademy.com/assets/images/courses/data-analytics-course-rama-skill-academy.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rama Skill Academy Gallery | Training & Learning">
+  <meta name="twitter:description" content="View photos and moments from Rama Skill Academy training sessions, workshops, and events.">
+  <meta name="twitter:image" content="https://ramaskillacademy.com/assets/images/courses/data-analytics-course-rama-skill-academy.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563EB'/%3E%3Ctext x='50%' y='68%' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../">Home</a>
+          <span class="separator">›</span>
+          <span class="current">Gallery</span>
+        </nav>
+        <h1>Campus & Workshop Gallery</h1>
+        <p>Explore moments from our practical training sessions, campus activities, workshops, and student celebrations.</p>
+      </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section class="section">
+      <div class="container" id="gallery-container">
+        <!-- Gallery content injected via script -->
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+      <div class="container cta-content">
+        <h2>Want to Experience Learning at Rama Skill Academy?</h2>
+        <p>Book a free demo session or visit our Durgapur training centre today.</p>
+        <button class="btn btn-accent btn-lg" onclick="openEnquiryModal()">Book Free Demo</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="site-footer"></footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('gallery-container');
+      const images = (typeof GALLERY_IMAGES !== 'undefined') ? GALLERY_IMAGES : [];
+
+      if (images.length === 0) {
+        container.innerHTML = `
+          <div class="gallery-empty animate-on-scroll">
+            <div class="gallery-empty-icon">🖼️</div>
+            <h3 style="font-size: 1.5rem; font-family: var(--font-heading);">Gallery Coming Soon</h3>
+            <p>We are preparing an exciting collection of photos from our classroom sessions, practical workshops, student achievements, and events. Check back soon!</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = '<div class="gallery-grid">' + images.map(img => 
+          `<div class="gallery-item animate-on-scroll" onclick="openLightbox('${img.src}', '${img.alt}')">
+            <img src="${img.src}" alt="${img.alt}" loading="lazy" width="400" height="300">
+          </div>`
+        ).join('') + '</div>';
+      }
+    });
+  </script>
+</body>
+</html>

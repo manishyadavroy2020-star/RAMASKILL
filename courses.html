@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses & Professional Training | Rama Skill Academy</title>
+  <meta name="description" content="Explore professional skill training courses at Rama Skill Academy in Durgapur. Certified courses in SAP, BFSI, Data Analytics, AI Digital Marketing, Graphic Design, and AI Tools.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ramaskillacademy.com/courses.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ramaskillacademy.com/courses/">
+  <meta property="og:site_name" content="Rama Skill Academy">
+  <meta property="og:title" content="Courses & Professional Training | Rama Skill Academy">
+  <meta property="og:description" content="Explore professional training courses at Rama Skill Academy. SAP, BFSI, Data Analytics, AI Digital Marketing, Graphic Design, and more.">
+  <meta property="og:image" content="https://ramaskillacademy.com/assets/images/courses/data-analytics-course-rama-skill-academy.png">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Courses & Professional Training | Rama Skill Academy">
+  <meta name="twitter:description" content="Explore professional training courses at Rama Skill Academy. SAP, BFSI, Data Analytics, AI Digital Marketing, Graphic Design, and more.">
+  <meta name="twitter:image" content="https://ramaskillacademy.com/assets/images/courses/data-analytics-course-rama-skill-academy.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563EB'/%3E%3Ctext x='50%' y='68%' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../">Home</a>
+          <span class="separator">›</span>
+          <span class="current">Courses</span>
+        </nav>
+        <h1>Our Professional Courses</h1>
+        <p>Explore our industry-focused skill training programs designed to prepare you for career opportunities with practical, hands-on learning.</p>
+      </div>
+    </section>
+
+    <!-- Course Grid Section -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center animate-on-scroll" style="margin-bottom: 3rem;">
+          <span class="section-badge">Career Programs</span>
+          <h2 class="section-title">Explore All Skill Training Programs</h2>
+          <p class="section-subtitle">Click on any course to view detailed syllabus, curriculum, career opportunities, and enrollment options.</p>
+        </div>
+        <div id="all-courses-grid" class="course-grid">
+          <!-- Populated via script -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+      <div class="container cta-content">
+        <h2>Ready to Kickstart Your Career?</h2>
+        <p>Join Rama Skill Academy and build the practical skills employers are looking for.</p>
+        <button class="btn btn-accent btn-lg" onclick="openEnquiryModal()">Enroll Now</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="site-footer"></footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const grid = document.getElementById('all-courses-grid');
+      if (grid && typeof COURSES !== 'undefined' && typeof buildCourseCard === 'function') {
+        grid.innerHTML = COURSES.map(c => buildCourseCard(c)).join('');
+      }
+    });
+  </script>
+</body>
+</html>
