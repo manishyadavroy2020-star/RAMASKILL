@@ -1,6 +1,6 @@
 // --- BLOG CMS CONFIGURATION ---
 // Paste your deployed Google Apps Script Web App URL here
-const GOOGLE_APPS_SCRIPT_URL = \'https://script.google.com/macros/s/AKfycby3h6KNvWvs8kYbIbzaiTpcKY4rVdgl2HUmp0CYk2MvplsCDv_bEm-XNnhebDPk1IcF0Q/exec\';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3h6KNvWvs8kYbIbzaiTpcKY4rVdgl2HUmp0CYk2MvplsCDv_bEm-XNnhebDPk1IcF0Q/exec';
 
 // ============================================
 // RAMA SKILL ACADEMY — Centralized Data & SEO Config
