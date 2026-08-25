@@ -40,8 +40,8 @@ const SITE_CONFIG = {
 };
 
 const STATS = [
-  { number: "5000+", label: "Students Trained", icon: "🎓" },
-  { number: "3000+", label: "Students Placed", icon: "💼" },
+  { number: "2000+", label: "Students Trained", icon: "🎓" },
+  { number: "1500+", label: "Students Placed", icon: "💼" },
   { number: "500+", label: "Hiring Partners", icon: "🤝" },
   { number: "4.9", label: "Google Rating", icon: "⭐" }
 ];
@@ -54,7 +54,7 @@ const COURSES = [
     description: "Our comprehensive SAP training program provides practical, industry-focused education in one of the world's most widely used enterprise software platforms. Learn to manage business operations across finance, logistics, human resources, and manufacturing using SAP's powerful tools and modules.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "sap-course-rama-skill-academy.png",
+    image: "sap.jpeg",
     altText: "SAP course training at Rama Skill Academy Durgapur",
     seoTitle: "SAP Course | Professional SAP Training | Rama Skill Academy",
     seoDescription: "Enroll in SAP training at Rama Skill Academy. Learn SAP FICO, MM, SD, ABAP, HCM with hands-on projects and placement assistance in Durgapur.",
@@ -102,7 +102,7 @@ const COURSES = [
     description: "Our BFSI training program prepares you for a rewarding career in Banking, Financial Services, and Insurance. Learn the fundamentals of banking operations, financial products, insurance concepts, and digital financial technologies that drive the modern financial industry.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "bfsi-course-rama-skill-academy.png",
+    image: "bfsi.jpeg",
     altText: "BFSI course training at Rama Skill Academy Durgapur",
     seoTitle: "BFSI Course | Banking, Financial Services & Insurance | Rama Skill Academy",
     seoDescription: "Join our BFSI training program at Rama Skill Academy. Learn banking, financial services, and insurance with placement support in Durgapur.",
@@ -150,7 +150,7 @@ const COURSES = [
     description: "Our Data Analytics program equips you with the skills to transform raw data into actionable business insights. Learn industry-standard tools and techniques for data collection, cleaning, analysis, visualization, and reporting that organizations rely on to make data-driven decisions.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "data-analytics-course-rama-skill-academy.png",
+    image: "data analyst.jpeg",
     altText: "Data Analytics course training at Rama Skill Academy Durgapur",
     seoTitle: "Data Analytics Course | Data Analytics Training | Rama Skill Academy",
     seoDescription: "Learn Data Analytics at Rama Skill Academy. Master data visualization, business intelligence tools, and analytical techniques with placement support in Durgapur.",
@@ -198,7 +198,7 @@ const COURSES = [
     description: "Our AI Digital Marketing program combines traditional digital marketing expertise with the latest AI-powered tools and strategies. Learn to leverage artificial intelligence for content creation, ad optimization, keyword research, customer targeting, and campaign analytics to drive measurable business results.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "ai-digital-marketing-course-rama-skill-academy.png",
+    image: "ai digital marketing.jpeg",
     altText: "AI Digital Marketing course at Rama Skill Academy Durgapur",
     seoTitle: "AI Digital Marketing Course | AI Marketing Training | Rama Skill Academy",
     seoDescription: "Learn AI Digital Marketing at Rama Skill Academy. Master AI-powered SEO, social media marketing, and advertising with placement assistance in Durgapur.",
@@ -246,7 +246,7 @@ const COURSES = [
     description: "Our Certified AI Tools Specialist program provides comprehensive training in the latest artificial intelligence tools and technologies. Learn to leverage AI for enhanced productivity, creative content generation, workflow automation, and professional development across various industries.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "certified-ai-tools-specialist-rama-skill-academy.png",
+    image: "ai tools.jpeg",
     altText: "Certified AI Tools Specialist course at Rama Skill Academy Durgapur",
     seoTitle: "Certified AI Tools Specialist Course | AI Tools Training | Rama Skill Academy",
     seoDescription: "Become a Certified AI Tools Specialist at Rama Skill Academy. Master AI productivity tools, automation, and professional AI workflows in Durgapur.",
@@ -294,7 +294,7 @@ const COURSES = [
     description: "Our Graphic Design program provides comprehensive training in professional design tools and creative techniques. From logo design to social media graphics, print layouts to UI elements, you will develop the skills needed to create visually compelling designs for any medium.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "graphic-design-course-rama-skill-academy.png",
+    image: "graphic design.jpeg",
     altText: "Graphic Design course training at Rama Skill Academy Durgapur",
     seoTitle: "Graphic Design Course | Professional Graphic Design Training | Rama Skill Academy",
     seoDescription: "Learn Graphic Design at Rama Skill Academy. Master Photoshop, Illustrator, Figma, and more with portfolio projects and placement support in Durgapur.",
@@ -342,7 +342,7 @@ const COURSES = [
     description: "Our AI Web Development with Hostinger Horizons program teaches you how to leverage artificial intelligence and modern development tools to create professional websites efficiently. Learn to build responsive, modern web applications using AI-assisted development workflows.",
     duration: "12 Weeks",
     price: "XXXX",
-    image: "ai-web-development-hostinger-horizons-rama-skill-academy.png",
+    image: "ai web development.jpeg",
     altText: "AI Web Development with Hostinger Horizons course at Rama Skill Academy Durgapur",
     seoTitle: "AI Web Development with Hostinger Horizons | Rama Skill Academy",
     seoDescription: "Learn AI Web Development with Hostinger Horizons at Rama Skill Academy. Build modern websites with AI-assisted development tools in Durgapur.",
@@ -381,6 +381,55 @@ const COURSES = [
       { question: "What is Hostinger Horizons?", answer: "Hostinger Horizons is a platform that enables AI-assisted website creation, allowing users to build professional websites efficiently. This course teaches you to leverage its capabilities." },
       { question: "Do I need coding experience?", answer: "No prior coding experience is required. We start from HTML, CSS, and JavaScript basics before moving to AI-assisted development." },
       { question: "Can I build real websites during the course?", answer: "Yes, you will build multiple real-world website projects as part of the curriculum, which will form your professional portfolio." }
+    ]
+  },
+  {
+    slug: "hotel-management",
+    name: "Hotel Management Vocational Course",
+    shortDescription: "Build a rewarding career in the hospitality industry with our comprehensive Hotel Management Vocational Course covering front office operations, food & beverage, housekeeping, and hotel administration.",
+    description: "Our Hotel Management Vocational Course provides complete training in hospitality operations, hotel administration, food & beverage management, front office operations, housekeeping, and customer service excellence. This program is designed to prepare you for a successful career in the fast-growing hospitality and tourism industry.",
+    duration: "12 Weeks",
+    price: "XXXX",
+    image: "hotel management.jpeg",
+    altText: "Hotel Management Vocational Course at Rama Skill Academy Durgapur",
+    seoTitle: "Hotel Management Vocational Course | Hospitality Training | Rama Skill Academy",
+    seoDescription: "Enroll in Hotel Management Vocational Course at Rama Skill Academy. Learn hotel operations, food & beverage, front office, and hospitality management with placement assistance in Durgapur.",
+    canonicalUrl: "https://ramaskillacademy.com/courses/hotel-management/",
+    features: [
+      "Complete hospitality operations training",
+      "Food & Beverage management skills",
+      "Front office & reception training",
+      "Housekeeping & hotel administration",
+      "Placement assistance in top hotels"
+    ],
+    curriculum: [
+      "Introduction to Hospitality Industry",
+      "Front Office Operations & Management",
+      "Food & Beverage Service & Management",
+      "Housekeeping Operations",
+      "Hotel Accounting & Revenue Management",
+      "Customer Service Excellence",
+      "Event Management & Catering",
+      "Tourism & Travel Management",
+      "Industrial Training & Internship"
+    ],
+    eligibility: "[ADD ELIGIBILITY]",
+    certification: "Industry-Recognized Rama Skill Academy Certificate",
+    careerOpportunities: [
+      "Hotel Manager",
+      "Front Office Manager",
+      "Food & Beverage Manager",
+      "Housekeeping Supervisor",
+      "Event Coordinator",
+      "Restaurant Manager",
+      "Tourism & Travel Executive",
+      "Guest Relations Manager"
+    ],
+    relatedCourses: ["bfsi", "sap", "data-analytics"],
+    faqs: [
+      { question: "What career opportunities are available after this course?", answer: "You can pursue careers as Hotel Manager, Front Office Manager, F&B Manager, Housekeeping Supervisor, Event Coordinator, Restaurant Manager, and various other roles in the hospitality industry." },
+      { question: "Do I need any prior experience in hospitality?", answer: "No prior experience is required. Our course starts from fundamentals and includes practical training to build your skills from the ground up." },
+      { question: "Is placement assistance provided?", answer: "Yes, we provide complete placement assistance with connections to leading hotels, resorts, and hospitality organizations." }
     ]
   }
 ];
@@ -465,7 +514,18 @@ const SUCCESS_STORIES = [
   }
 ];
 
-const GALLERY_IMAGES = [];
+const GALLERY_IMAGES = [
+  { src: "sap.jpeg", alt: "SAP Course Training at Rama Skill Academy", category: "Courses" },
+  { src: "bfsi.jpeg", alt: "BFSI Course Training at Rama Skill Academy", category: "Courses" },
+  { src: "data analyst.jpeg", alt: "Data Analytics Course at Rama Skill Academy", category: "Courses" },
+  { src: "ai digital marketing.jpeg", alt: "AI Digital Marketing Course at Rama Skill Academy", category: "Courses" },
+  { src: "ai tools.jpeg", alt: "Certified AI Tools Specialist Course at Rama Skill Academy", category: "Courses" },
+  { src: "graphic design.jpeg", alt: "Graphic Design Course at Rama Skill Academy", category: "Courses" },
+  { src: "ai web development.jpeg", alt: "AI Web Development Course at Rama Skill Academy", category: "Courses" },
+  { src: "hotel management.jpeg", alt: "Hotel Management Vocational Course at Rama Skill Academy", category: "Courses" },
+  { src: "hotel management 2.jpeg", alt: "Hotel Management Training at Rama Skill Academy", category: "Courses" },
+  { src: "logo.jpeg", alt: "Rama Skill Academy Logo", category: "Academy" }
+];
 
 const WHY_CHOOSE_US = [
   {
@@ -558,7 +618,7 @@ function injectGlobalSchemas() {
     "@type": "EducationalOrganization",
     "name": SITE_CONFIG.name,
     "url": SITE_CONFIG.domain + "/",
-    "logo": SITE_CONFIG.domain + "data-analytics-course-rama-skill-academy.png",
+    "logo": SITE_CONFIG.domain + "data analyst.jpeg",
     "description": SITE_CONFIG.description,
     "telephone": "+919593492055",
     "email": SITE_CONFIG.email,
@@ -603,7 +663,7 @@ function renderHeader() {
   header.innerHTML = `
     <div class="container header-inner">
       <a href="" class="logo" aria-label="Rama Skill Academy Home">
-        <div class="logo-icon">R</div>
+        <img src="logo.jpeg" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
         <span>Rama Skill Academy</span>
       </a>
       <nav class="nav-desktop" aria-label="Main Navigation">
@@ -671,7 +731,7 @@ function renderFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="" class="logo">
-            <div class="logo-icon">R</div>
+            <img src="logo.jpeg" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
             <span>Rama Skill Academy</span>
           </a>
           <p>${SITE_CONFIG.description}</p>
