@@ -695,17 +695,17 @@ function renderFooter() {
             <a href="${SITE_CONFIG.emailMailto}">${SITE_CONFIG.email}</a>
           </div>
           <div class="footer-contact-item" style="align-items: flex-start;">
-            <span class="icon" style="margin-top: 4px;">🏢</span>
+            <span class="icon" style="margin-top: 4px;">📍</span>
             <div>
-              <strong style="display: block; font-size: 0.9em; margin-bottom: 2px;">Corporate Office</strong>
-              <span>${SITE_CONFIG.addressShort}</span>
+              <strong style="display: block; font-size: 0.9em; margin-bottom: 2px; color: #22d3ee;">ADDRESS</strong>
+              <span>3/6, Bengal Ambuja, 1st Floor, Opposite of IDFC First Bank, City Centre, Durgapur-16, West Bengal, India.</span>
             </div>
           </div>
           <div class="footer-contact-item" style="align-items: flex-start;">
             <span class="icon" style="margin-top: 4px;">📍</span>
             <div>
-              <strong style="display: block; font-size: 0.9em; margin-bottom: 2px;">Counselling Office</strong>
-              <span>Kolkata, West Bengal - 700091</span>
+              <strong style="display: block; font-size: 0.9em; margin-bottom: 2px; color: #22d3ee;">ADMISSION & COUNSELLING OFFICE</strong>
+              <span>RDB Boulevard, 5th Floor, BP Block, Sector V, Bidhannagar, Kolkata, West Bengal – 700091</span>
             </div>
           </div>
           <div class="footer-contact-item">
