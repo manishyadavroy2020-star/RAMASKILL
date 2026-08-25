@@ -28,10 +28,11 @@ const SITE_CONFIG = {
   },
   navItems: [
     { label: "Home", href: "index.html" },
-    { label: "Courses", href: "courses.html" },
     { label: "About Us", href: "about.html" },
+    { label: "Courses", href: "courses.html" },
+    { label: "Director's Desk", href: "director.html" },
+    { label: "Blog", href: "blog.html" },
     { label: "Gallery", href: "gallery.html" },
-      { label: "Blog", href: "blog.html" },
     { label: "Contact Us", href: "contact.html" }
   ],
   ctaText: "Enroll Now",

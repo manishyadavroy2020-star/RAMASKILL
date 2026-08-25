@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Director's Desk | Rama Skill Academy - Leadership & Vision</title>
+  <meta name="description" content="Message from the Director of Rama Skill Academy. Learn about our leadership vision, commitment to skill development, and mission to create industry-ready professionals in Durgapur.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ramaskillacademy.com/director.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ramaskillacademy.com/director.html">
+  <meta property="og:site_name" content="Rama Skill Academy">
+  <meta property="og:title" content="Director's Desk | Rama Skill Academy">
+  <meta property="og:description" content="Message from the Director of Rama Skill Academy — Leading Innovation, Building Careers, Creating Future Leaders.">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Director's Desk | Rama Skill Academy">
+  <meta name="twitter:description" content="Message from the Director of Rama Skill Academy — Leading Innovation, Building Careers, Creating Future Leaders.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563EB'/%3E%3Ctext x='50%25' y='68%25' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* --- Director Page Specific Styles --- */
+    .director-hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .director-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .director-hero .section-badge {
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .director-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .director-hero .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Director Profile Card */
+    .director-profile-section {
+      padding: 4rem 0;
+    }
+    .director-card {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3rem;
+      align-items: start;
+      background: rgba(var(--card-rgb), 0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      backdrop-filter: blur(12px);
+    }
+    @media (max-width: 768px) {
+      .director-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 2rem;
+      }
+    }
+    .director-photo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .director-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563EB 0%, #7c3aed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 0 40px rgba(37, 99, 235, 0.3);
+      position: relative;
+    }
+    .director-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 99, 235, 0.4);
+      animation: pulse-ring 2s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.5; }
+    }
+    .director-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      color: #fff;
+    }
+    .director-title {
+      font-size: 0.95rem;
+      color: #60a5fa;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .director-quick-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      width: 100%;
+    }
+    .quick-stat {
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.15);
+      border-radius: 0.75rem;
+      padding: 1rem 0.75rem;
+      text-align: center;
+    }
+    .quick-stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #60a5fa;
+      display: block;
+    }
+    .quick-stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    /* Director Message Content */
+    .director-message h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    .director-message p {
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+    .director-message .signature-area {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .signature-area .sig-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .signature-area .sig-title {
+      color: #60a5fa;
+      font-size: 0.9rem;
+    }
+
+    /* Vision & Mission Cards */
+    .vision-mission-section {
+      padding: 5rem 0;
+      background: rgba(var(--card-rgb), 0.3);
+    }
+    .vm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .vm-card {
+      background: rgba(var(--card-rgb), 0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1rem;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .vm-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+    }
+    .vm-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563EB, #7c3aed);
+    }
+    .vm-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(124, 58, 237, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .vm-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .vm-card p {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    /* Values Grid */
+    .values-section {
+      padding: 5rem 0;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: rgba(var(--card-rgb), 0.4);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .value-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .value-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .value-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* Address Section */
+    .address-section {
+      padding: 4rem 0;
+      background: rgba(var(--card-rgb), 0.3);
+    }
+    .address-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .address-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: rgba(var(--card-rgb), 0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      transition: transform 0.3s ease;
+    }
+    .address-card:hover {
+      transform: translateY(-2px);
+    }
+    .address-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(124, 58, 237, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .address-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #22d3ee;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .address-text {
+      color: var(--text-secondary);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    /* Impact Stats */
+    .impact-section {
+      padding: 5rem 0;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .impact-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: rgba(var(--card-rgb), 0.4);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .impact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.12);
+    }
+    .impact-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .impact-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+    .impact-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header" id="site-header"></header>
+
+  <main>
+    <!-- Hero -->
+    <section class="director-hero">
+      <div class="container">
+        <span class="section-badge animate-on-scroll">Director's Desk</span>
+        <h1 class="animate-on-scroll">Leading Innovation, Building Careers,<br>Creating Future Leaders</h1>
+        <p class="hero-tagline animate-on-scroll delay-1">A message from the leadership of Rama Skill Academy — our commitment to transforming education and empowering the next generation of skilled professionals.</p>
+      </div>
+    </section>
+
+    <!-- Director Profile + Message -->
+    <section class="director-profile-section">
+      <div class="container">
+        <div class="director-card animate-on-scroll">
+          <!-- Left: Photo Area -->
+          <div class="director-photo-area">
+            <div class="director-avatar">R</div>
+            <div>
+              <div class="director-name">Director</div>
+              <div class="director-title">Managing Director</div>
+            </div>
+            <div class="director-quick-stats">
+              <div class="quick-stat">
+                <span class="quick-stat-number">2000+</span>
+                <span class="quick-stat-label">Students Trained</span>
+              </div>
+              <div class="quick-stat">
+                <span class="quick-stat-number">1500+</span>
+                <span class="quick-stat-label">Students Placed</span>
+              </div>
+              <div class="quick-stat">
+                <span class="quick-stat-number">7+</span>
+                <span class="quick-stat-label">Courses</span>
+              </div>
+              <div class="quick-stat">
+                <span class="quick-stat-number">100%</span>
+                <span class="quick-stat-label">Placement Assist</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Director's Message -->
+          <div class="director-message">
+            <h2>Message from the Director</h2>
+            <p>Welcome to Rama Skill Academy — an initiative born from a deep commitment to bridging the gap between academic education and real-world industry requirements. In today's rapidly evolving job market, traditional education alone is not enough. Students and professionals need practical, hands-on skills that make them immediately employable.</p>
+
+            <p>At Rama Skill Academy, we don't just teach — we transform. Our carefully curated programs in SAP, Data Analytics, BFSI, AI Digital Marketing, Graphic Design, AI Tools, and AI Web Development are designed by industry experts who understand what employers are looking for. Every course is built around real-world projects, live case studies, and practical assignments.</p>
+
+            <p>Our vision is to create a generation of skilled, confident, and career-ready professionals who can contribute meaningfully to the industry from day one. We are committed to providing 100% placement assistance because we believe that the true measure of education is the success of our students in their careers.</p>
+
+            <p>I invite you to explore our courses, visit our campus, and experience the Rama Skill Academy difference. Your journey to a successful career starts here.</p>
+
+            <div class="signature-area">
+              <div class="sig-name">Director</div>
+              <div class="sig-title">Managing Director, Rama Skill Academy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section class="vision-mission-section">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <span class="section-badge">Our Foundation</span>
+          <h2 class="section-title">Vision & Mission</h2>
+          <p class="section-subtitle">The principles that guide everything we do</p>
+        </div>
+        <div class="vm-grid">
+          <div class="vm-card animate-on-scroll">
+            <div class="vm-card-icon">🎯</div>
+            <h3>Our Vision</h3>
+            <p>To be recognized as a leading skill training academy that creates a global ecosystem of skilled tech professionals, bridging the gap between education and industry, and empowering individuals to build successful and fulfilling careers.</p>
+          </div>
+          <div class="vm-card animate-on-scroll delay-1">
+            <div class="vm-card-icon">🚀</div>
+            <h3>Our Mission</h3>
+            <p>To provide accessible, affordable, and industry-relevant skill training programs that equip students and professionals with practical knowledge, software proficiency, and career readiness — ensuring 100% placement assistance for every graduate.</p>
+          </div>
+          <div class="vm-card animate-on-scroll delay-2">
+            <div class="vm-card-icon">💡</div>
+            <h3>Our Philosophy</h3>
+            <p>We believe in learning by doing. Every course is structured around real-world projects, live assignments, and hands-on practice — because true skill mastery comes from experience, not just theory. We prepare you for the workplace, not just exams.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values-section">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <span class="section-badge">What Defines Us</span>
+          <h2 class="section-title">Our Core Values</h2>
+          <p class="section-subtitle">The principles that shape every decision we make</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">🏆</span>
+            <h3>Excellence</h3>
+            <p>We strive for excellence in every course, every session, and every student interaction. Quality is non-negotiable.</p>
+          </div>
+          <div class="value-card animate-on-scroll delay-1">
+            <span class="value-icon">🤝</span>
+            <h3>Integrity</h3>
+            <p>We maintain transparency in our teaching, placement commitments, and business practices at all times.</p>
+          </div>
+          <div class="value-card animate-on-scroll delay-2">
+            <span class="value-icon">🔄</span>
+            <h3>Innovation</h3>
+            <p>We continuously update our curriculum and teaching methods to stay ahead of industry trends and technologies.</p>
+          </div>
+          <div class="value-card animate-on-scroll">
+            <span class="value-icon">👥</span>
+            <h3>Student First</h3>
+            <p>Every decision we make starts with one question — will this help our students succeed in their careers?</p>
+          </div>
+          <div class="value-card animate-on-scroll delay-1">
+            <span class="value-icon">🌐</span>
+            <h3>Industry Connect</h3>
+            <p>We build strong relationships with hiring companies so our students get direct access to job opportunities.</p>
+          </div>
+          <div class="value-card animate-on-scroll delay-2">
+            <span class="value-icon">📈</span>
+            <h3>Growth Mindset</h3>
+            <p>We foster a culture of continuous learning, helping students build skills that evolve with the industry.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-section" style="background: rgba(var(--card-rgb), 0.3);">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <span class="section-badge">Our Impact</span>
+          <h2 class="section-title">Numbers That Speak</h2>
+          <p class="section-subtitle">The results of our commitment to quality education</p>
+        </div>
+        <div class="impact-grid">
+          <div class="impact-card animate-on-scroll">
+            <span class="impact-icon">🎓</span>
+            <span class="impact-number"><span data-counter="2000" data-suffix="+">0+</span></span>
+            <div class="impact-label">Students Trained</div>
+          </div>
+          <div class="impact-card animate-on-scroll delay-1">
+            <span class="impact-icon">💼</span>
+            <span class="impact-number"><span data-counter="1500" data-suffix="+">0+</span></span>
+            <div class="impact-label">Students Placed</div>
+          </div>
+          <div class="impact-card animate-on-scroll delay-2">
+            <span class="impact-icon">📚</span>
+            <span class="impact-number"><span data-counter="7" data-suffix="+">0+</span></span>
+            <div class="impact-label">Professional Courses</div>
+          </div>
+          <div class="impact-card animate-on-scroll">
+            <span class="impact-icon">⭐</span>
+            <span class="impact-number"><span data-counter="100" data-suffix="%">0%</span></span>
+            <div class="impact-label">Placement Assistance</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Address Section -->
+    <section class="address-section">
+      <div class="container">
+        <div class="text-center animate-on-scroll">
+          <span class="section-badge">Find Us</span>
+          <h2 class="section-title">Our Locations</h2>
+        </div>
+        <div class="address-grid">
+          <div class="address-card animate-on-scroll">
+            <div class="address-icon">📍</div>
+            <div>
+              <div class="address-label">Address</div>
+              <div class="address-text">3/6, Bengal Ambuja, 1st Floor, Opposite of IDFC First Bank, City Centre, Durgapur-16, West Bengal, India.</div>
+            </div>
+          </div>
+          <div class="address-card animate-on-scroll delay-1">
+            <div class="address-icon">🏢</div>
+            <div>
+              <div class="address-label">Admission & Counselling Office</div>
+              <div class="address-text">RDB Boulevard, 5th Floor, BP Block, Sector V, Bidhannagar, Kolkata, West Bengal – 700091</div>
+            </div>
+          </div>
+          <div class="address-card animate-on-scroll delay-2">
+            <div class="address-icon">📞</div>
+            <div>
+              <div class="address-label">Contact</div>
+              <div class="address-text">
+                Phone: <a href="tel:9593492055" style="color: #60a5fa;">+91 95934 92055</a><br>
+                Email: <a href="mailto:ramaskillacademy@gmail.com" style="color: #60a5fa;">ramaskillacademy@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+      <div class="container cta-content">
+        <h2>Ready to Start Your Career Journey?</h2>
+        <p>Explore our wide range of industry-focused training programs and take the first step toward a successful career.</p>
+        <a href="courses.html" class="btn btn-accent btn-lg">Explore All Courses</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="site-footer"></footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      animateCounters();
+    });
+  </script>
+</body>
+</html>
