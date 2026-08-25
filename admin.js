@@ -16,10 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     showView('login-view');
   }
-
   setupEventListeners();
 });
-
 
 async function hashToken(password) {
   const encoder = new TextEncoder();
@@ -60,24 +58,18 @@ function setupEventListeners() {
     switchPanel('editor');
   });
 
-  // Cancel Edit
   document.getElementById('btn-cancel-edit').addEventListener('click', () => {
     switchPanel('dashboard');
   });
 
-  // Save Draft
   document.getElementById('btn-save-draft').addEventListener('click', () => saveArticle('Draft'));
-  
-  // Publish
   document.getElementById('btn-publish').addEventListener('click', () => saveArticle('Published'));
 
-  // SEO Preview Updates
   document.getElementById('edit-title').addEventListener('input', updateSEOPreview);
   document.getElementById('edit-seo-title').addEventListener('input', updateSEOPreview);
   document.getElementById('edit-meta-desc').addEventListener('input', updateSEOPreview);
   document.getElementById('edit-excerpt').addEventListener('input', updateSEOPreview);
   
-  // Search and Filter
   document.getElementById('search-articles').addEventListener('input', renderArticlesTable);
   document.getElementById('filter-status').addEventListener('change', renderArticlesTable);
 }
@@ -129,7 +121,7 @@ async function verifyToken(testToken) {
     document.getElementById('login-error').classList.add('hidden');
     showView('app-view');
     switchPanel('dashboard');
-    fetchCategories(); // Load categories for the dropdown
+    fetchCategories(); 
   } else {
     token = '';
     localStorage.removeItem('cms_token');
@@ -231,11 +223,6 @@ function editArticle(id) {
 }
 
 async function saveArticle(status) {
-  if (GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE')) {
-    alert("Please set the GOOGLE_APPS_SCRIPT_URL in admin.js first.");
-    return;
-  }
-
   const id = document.getElementById('edit-id').value;
   const title = document.getElementById('edit-title').value;
   
@@ -259,7 +246,6 @@ async function saveArticle(status) {
   const action = id ? 'updateArticle' : 'createArticle';
   if (id) payload.id = id;
   
-  // Show saving state
   const btn = status === 'Published' ? 'btn-publish' : 'btn-save-draft';
   const originalText = document.getElementById(btn).textContent;
   document.getElementById(btn).textContent = 'Saving...';
