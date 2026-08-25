@@ -716,7 +716,7 @@ function renderFooter() {
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; ${new Date().getFullYear()} ${SITE_CONFIG.name}. All rights reserved.</p>
+        <p>&copy; ${new Date().getFullYear()} <a href="${ROOT}admin.html" style="color: inherit; text-decoration: none;">${SITE_CONFIG.name}</a>. All rights reserved.</p>
       </div>
     </div>
   `;
