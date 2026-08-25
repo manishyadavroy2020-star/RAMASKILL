@@ -14,7 +14,7 @@ const SPREADSHEET_ID = '16YULDTkBtfU9SihczuyMgAxFJhNAEDDpg3ploY6SGA';
 
 // Set a strong, secret token here. This acts as your admin password for API requests.
 // You will enter this exact token in your website's Admin Panel to log in.
-const ADMIN_SECRET_TOKEN = 'RamaAdmin2026!'; // CHANGE THIS BEFORE DEPLOYING!
+const ADMIN_SECRET_TOKEN = '61994203b4890987052b5fdba65c45d678fb61805b16fd2a8ae0b61d04e67315'; // SHA-256 hash of chandan@321#
 
 // --- DATABASE INITIALIZATION ---
 function initializeDatabase() {

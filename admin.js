@@ -20,12 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
 });
 
+
+async function hashToken(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 function setupEventListeners() {
   // Login
-  document.getElementById('login-form').addEventListener('submit', (e) => {
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const inputToken = document.getElementById('admin-token').value;
-    verifyToken(inputToken);
+    const hashed = await hashToken(inputToken);
+    verifyToken(hashed);
   });
 
   // Logout

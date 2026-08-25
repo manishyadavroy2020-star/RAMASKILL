@@ -31,6 +31,7 @@ const SITE_CONFIG = {
     { label: "Courses", href: "courses.html" },
     { label: "About Us", href: "about.html" },
     { label: "Gallery", href: "gallery.html" },
+      { label: "Blog", href: "blog.html" },
     { label: "Contact Us", href: "contact.html" }
   ],
   ctaText: "Enroll Now",
