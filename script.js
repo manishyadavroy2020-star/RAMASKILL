@@ -49,6 +49,9 @@ const STATS = [
 const COURSES = [
   {
     slug: "sap",
+    minSalary: "25,000",
+    maxSalary: "1,50,000+",
+    durationRaw: "5 Months",
     name: "SAP",
     shortDescription: "Master SAP enterprise resource planning with hands-on training in modules like FICO, MM, SD, ABAP, HCM, and PP. Build the skills employers demand for corporate ERP roles.",
     description: "Our comprehensive SAP training program provides practical, industry-focused education in one of the world's most widely used enterprise software platforms. Learn to manage business operations across finance, logistics, human resources, and manufacturing using SAP's powerful tools and modules.",
@@ -97,6 +100,9 @@ const COURSES = [
   },
   {
     slug: "bfsi",
+    minSalary: "15,000",
+    maxSalary: "25,000+",
+    durationRaw: "1 Months",
     name: "BFSI",
     shortDescription: "Get job-ready for the banking, financial services, and insurance sector with comprehensive training covering banking operations, insurance fundamentals, and digital financial services.",
     description: "Our BFSI training program prepares you for a rewarding career in Banking, Financial Services, and Insurance. Learn the fundamentals of banking operations, financial products, insurance concepts, and digital financial technologies that drive the modern financial industry.",
@@ -145,6 +151,9 @@ const COURSES = [
   },
   {
     slug: "data-analytics",
+    minSalary: "24,800",
+    maxSalary: "87,000+",
+    durationRaw: "4 Months",
     name: "Data Analytics",
     shortDescription: "Learn to collect, analyze, and interpret data using industry-standard tools. Master data visualization, business intelligence, and analytical techniques to drive informed business decisions.",
     description: "Our Data Analytics program equips you with the skills to transform raw data into actionable business insights. Learn industry-standard tools and techniques for data collection, cleaning, analysis, visualization, and reporting that organizations rely on to make data-driven decisions.",
@@ -193,6 +202,9 @@ const COURSES = [
   },
   {
     slug: "ai-digital-marketing",
+    minSalary: "18,000",
+    maxSalary: "75,000+",
+    durationRaw: "4 Months",
     name: "AI Digital Marketing",
     shortDescription: "Master AI-powered digital marketing strategies including content creation, SEO optimization, social media marketing, ad campaign management, and marketing automation using cutting-edge AI tools.",
     description: "Our AI Digital Marketing program combines traditional digital marketing expertise with the latest AI-powered tools and strategies. Learn to leverage artificial intelligence for content creation, ad optimization, keyword research, customer targeting, and campaign analytics to drive measurable business results.",
@@ -241,6 +253,9 @@ const COURSES = [
   },
   {
     slug: "certified-ai-tools-specialist",
+    minSalary: "16,000",
+    maxSalary: "19,000+",
+    durationRaw: "3 months",
     name: "Certified AI Tools Specialist",
     shortDescription: "Become proficient in the latest AI tools and technologies. Learn to use AI for productivity, automation, content creation, and professional workflows across multiple domains.",
     description: "Our Certified AI Tools Specialist program provides comprehensive training in the latest artificial intelligence tools and technologies. Learn to leverage AI for enhanced productivity, creative content generation, workflow automation, and professional development across various industries.",
@@ -289,6 +304,9 @@ const COURSES = [
   },
   {
     slug: "graphic-design",
+    minSalary: "20,000",
+    maxSalary: "70,000+",
+    durationRaw: "4 Months",
     name: "Graphic Design",
     shortDescription: "Master professional graphic design with training in Photoshop, Illustrator, Figma, CorelDRAW, and more. Build a portfolio of stunning designs for print and digital media.",
     description: "Our Graphic Design program provides comprehensive training in professional design tools and creative techniques. From logo design to social media graphics, print layouts to UI elements, you will develop the skills needed to create visually compelling designs for any medium.",
@@ -337,6 +355,9 @@ const COURSES = [
   },
   {
     slug: "ai-web-development-hostinger-horizons",
+    minSalary: "20,000",
+    maxSalary: "25,000+",
+    durationRaw: "4 Months",
     name: "AI Web Development with Hostinger Horizons Course",
     shortDescription: "Learn AI-assisted web development techniques. Build modern, responsive websites using AI-powered tools and Hostinger Horizons platform for rapid, professional website creation.",
     description: "Our AI Web Development with Hostinger Horizons program teaches you how to leverage artificial intelligence and modern development tools to create professional websites efficiently. Learn to build responsive, modern web applications using AI-assisted development workflows.",
@@ -385,6 +406,9 @@ const COURSES = [
   },
   {
     slug: "hotel-management",
+    minSalary: "10,000",
+    maxSalary: "15,000+",
+    durationRaw: "1 YEAR",
     name: "Hotel Management Vocational Course",
     shortDescription: "Build a rewarding career in the hospitality industry with our comprehensive Hotel Management Vocational Course covering front office operations, food & beverage, housekeeping, and hotel administration.",
     description: "Our Hotel Management Vocational Course provides complete training in hospitality operations, hotel administration, food & beverage management, front office operations, housekeeping, and customer service excellence. This program is designed to prepare you for a successful career in the fast-growing hospitality and tourism industry.",
@@ -745,6 +769,13 @@ function renderFooter() {
           <ul>${courseLinks}</ul>
         </div>
         <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="refund-policy.html">Refund Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
           <h4>Contact Us</h4>
           <div class="footer-contact-item">
             <span class="icon">📞</span>
@@ -855,14 +886,33 @@ function buildCourseCard(course) {
       <div class="course-card-body">
         <h3 class="course-card-title"><a href="${href}">${course.name}</a></h3>
         <p class="course-card-desc">${course.shortDescription}</p>
+        ${course.minSalary ? `
+        <div class="course-stats-block">
+          <div class="stat-row">
+            <span class="stat-label-light">DURATION</span>
+            <span class="stat-value-bold">${course.durationRaw || course.duration}</span>
+          </div>
+          <div class="stat-row-col">
+            <span class="stat-label-light">EXPECTED SALARY</span>
+            <div class="salary-progress-track">
+              <div class="salary-progress-fill"></div>
+            </div>
+            <div class="salary-values">
+              <span class="salary-min">₹${course.minSalary}</span>
+              <span class="salary-max">₹${course.maxSalary}</span>
+            </div>
+          </div>
+        </div>
+        ` : `
         <div class="course-card-meta">
           <span><span class="icon">⏱️</span> ${course.duration}</span>
           <span><span class="icon">📜</span> Certificate</span>
         </div>
-        <div class="course-card-footer">
+        <div class="course-card-footer" style="padding-top: 1.25rem; border-top: 1px solid rgba(var(--muted-rgb), 0.5);">
           <span class="course-price">${course.price}</span>
-          <button class="btn btn-primary btn-sm" onclick="openEnquiryModal('${course.name}')">Apply Now</button>
         </div>
+        `}
+        <button class="btn btn-primary btn-full" onclick="openEnquiryModal('${course.name}')" style="margin-top: 1rem; width: 100%; border-radius: var(--radius-md);">Enroll Now ↗</button>
       </div>
     </article>
   `;
