@@ -2,7 +2,7 @@
  * RAMA SKILL ACADEMY - CMS ADMIN PANEL
  */
 
-// Paste your deployed Google Apps Script Web App URL here
+// Google Apps Script Web App URL
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3h6KNvWvs8kYbIbzaiTpcKY4rVdgl2HUmp0CYk2MvplsCDv_bEm-XNnhebDPk1IcF0Q/exec';
 
 let token = localStorage.getItem('cms_token') || '';
@@ -10,65 +10,54 @@ let articlesData = [];
 let categoriesData = [];
 
 // --- Initialization ---
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   if (token) {
     verifyToken(token);
   } else {
     showView('login-view');
   }
-
   setupEventListeners();
 });
 
-
-async function hashToken(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
 function setupEventListeners() {
   // Login
-  document.getElementById('login-form').addEventListener('submit', (e) => {
+  document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const inputToken = document.getElementById('admin-token').value;
+    var inputToken = document.getElementById('admin-token').value;
     verifyToken(inputToken);
   });
 
   // Logout
-  document.getElementById('logout-btn').addEventListener('click', () => {
+  document.getElementById('logout-btn').addEventListener('click', function() {
     localStorage.removeItem('cms_token');
     token = '';
     showView('login-view');
   });
 
   // Navigation
-  document.querySelectorAll('.nav-item').forEach(nav => {
-    nav.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-item').forEach(function(nav) {
+    nav.addEventListener('click', function(e) {
       e.preventDefault();
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
       e.target.classList.add('active');
       switchPanel(e.target.dataset.view);
     });
   });
 
   // New Article
-  document.getElementById('btn-new-article').addEventListener('click', () => {
+  document.getElementById('btn-new-article').addEventListener('click', function() {
     resetEditor();
     switchPanel('editor');
   });
 
   // Cancel Edit
-  document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+  document.getElementById('btn-cancel-edit').addEventListener('click', function() {
     switchPanel('dashboard');
   });
 
-  // Save Draft
-  document.getElementById('btn-save-draft').addEventListener('click', () => saveArticle('Draft'));
-  
-  // Publish
-  document.getElementById('btn-publish').addEventListener('click', () => saveArticle('Published'));
+  // Save Draft & Publish
+  document.getElementById('btn-save-draft').addEventListener('click', function() { saveArticle('Draft'); });
+  document.getElementById('btn-publish').addEventListener('click', function() { saveArticle('Published'); });
 
   // SEO Preview Updates
   document.getElementById('edit-title').addEventListener('input', updateSEOPreview);
@@ -83,55 +72,92 @@ function setupEventListeners() {
 
 // --- Views & Panels ---
 function showView(viewId) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
   document.getElementById(viewId).classList.add('active');
 }
 
 function switchPanel(panelName) {
-  document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(`view-${panelName}`).classList.add('active');
+  document.querySelectorAll('.content-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('view-' + panelName).classList.add('active');
   
   if (panelName === 'dashboard') fetchArticles();
   if (panelName === 'categories') fetchCategories();
 }
 
 function showToast(message) {
-  const toast = document.getElementById('toast');
+  var toast = document.getElementById('toast');
   toast.textContent = message;
   toast.classList.remove('hidden');
-  setTimeout(() => toast.classList.add('hidden'), 3000);
+  setTimeout(function() { toast.classList.add('hidden'); }, 3000);
 }
 
 // --- API Calls ---
-async function apiRequest(action, payload = {}) {
+// Google Apps Script redirects POST to GET, dropping the body.
+// So we use GET with URL parameters for all requests.
+function buildUrl(params) {
+  var url = GOOGLE_APPS_SCRIPT_URL + '?';
+  var parts = [];
+  for (var key in params) {
+    if (params.hasOwnProperty(key) && params[key] !== undefined && params[key] !== null) {
+      parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+    }
+  }
+  return url + parts.join('&');
+}
+
+async function apiRequest(action, payload) {
+  payload = payload || {};
   try {
     payload.action = action;
     payload.token = token;
     
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
+    var url = buildUrl(payload);
+    
+    var response = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow'
     });
-    const result = await response.json();
-    return result;
+    
+    var text = await response.text();
+    
+    try {
+      return JSON.parse(text);
+    } catch (parseErr) {
+      console.error('Failed to parse response:', text.substring(0, 200));
+      return { success: false, error: 'Invalid response from server.' };
+    }
   } catch (err) {
     console.error('API Error:', err);
-    return { success: false, error: 'Network error or CORS issue.' };
+    return { success: false, error: 'Network error: ' + err.message };
   }
 }
 
 async function verifyToken(testToken) {
+  document.getElementById('login-error').classList.add('hidden');
+  var loginBtn = document.querySelector('#login-form button[type="submit"]');
+  if (loginBtn) {
+    loginBtn.textContent = 'Logging in...';
+    loginBtn.disabled = true;
+  }
+  
   token = testToken;
-  const res = await apiRequest('verifyLogin');
+  var res = await apiRequest('verifyLogin');
+  
+  if (loginBtn) {
+    loginBtn.textContent = 'Login';
+    loginBtn.disabled = false;
+  }
+  
   if (res.success) {
     localStorage.setItem('cms_token', token);
     document.getElementById('login-error').classList.add('hidden');
     showView('app-view');
     switchPanel('dashboard');
-    fetchCategories(); // Load categories for the dropdown
+    fetchCategories();
   } else {
     token = '';
     localStorage.removeItem('cms_token');
+    document.getElementById('login-error').textContent = res.error || 'Invalid token or connection error.';
     document.getElementById('login-error').classList.remove('hidden');
     showView('login-view');
   }
@@ -141,53 +167,53 @@ async function fetchArticles() {
   document.getElementById('articles-loading').classList.remove('hidden');
   document.getElementById('articles-table').querySelector('tbody').innerHTML = '';
   
-  const res = await apiRequest('getArticles');
+  var res = await apiRequest('getArticles');
   if (res.success) {
     articlesData = res.data;
     renderArticlesTable();
   } else {
-    alert(res.error || 'Failed to fetch articles');
+    console.error(res.error || 'Failed to fetch articles');
   }
   document.getElementById('articles-loading').classList.add('hidden');
 }
 
 async function fetchCategories() {
-  const res = await apiRequest('getCategories');
+  var res = await apiRequest('getCategories');
   if (res.success) {
     categoriesData = res.data;
-    const catSelect = document.getElementById('edit-category');
-    catSelect.innerHTML = categoriesData.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+    var catSelect = document.getElementById('edit-category');
+    catSelect.innerHTML = categoriesData.map(function(c) { 
+      return '<option value="' + c.name + '">' + c.name + '</option>'; 
+    }).join('');
   }
 }
 
 // --- Dashboard ---
 function renderArticlesTable() {
-  const tbody = document.getElementById('articles-table').querySelector('tbody');
-  const search = document.getElementById('search-articles').value.toLowerCase();
-  const filter = document.getElementById('filter-status').value;
+  var tbody = document.getElementById('articles-table').querySelector('tbody');
+  var search = document.getElementById('search-articles').value.toLowerCase();
+  var filter = document.getElementById('filter-status').value;
   
-  let html = '';
+  var html = '';
   
-  const filtered = articlesData.filter(a => {
-    const matchSearch = a.title.toLowerCase().includes(search) || a.slug.toLowerCase().includes(search);
-    const matchStatus = filter === 'All' || a.status === filter;
+  var filtered = articlesData.filter(function(a) {
+    var matchSearch = a.title.toLowerCase().includes(search) || a.slug.toLowerCase().includes(search);
+    var matchStatus = filter === 'All' || a.status === filter;
     return matchSearch && matchStatus;
   });
 
-  filtered.forEach(article => {
-    const d = new Date(article.updatedDate).toLocaleDateString();
-    html += `
-      <tr>
-        <td><strong>${article.title || 'Untitled'}</strong><br><small class="text-muted">/${article.slug}</small></td>
-        <td>${article.category}</td>
-        <td><span class="badge ${article.status.toLowerCase()}">${article.status}</span></td>
-        <td>${d}</td>
-        <td>
-          <button class="btn-text" onclick="editArticle('${article.id}')">Edit</button>
-          <button class="btn-text" style="color:var(--danger)" onclick="deleteArticle('${article.id}')">Delete</button>
-        </td>
-      </tr>
-    `;
+  filtered.forEach(function(article) {
+    var d = new Date(article.updatedDate).toLocaleDateString();
+    html += '<tr>' +
+      '<td><strong>' + (article.title || 'Untitled') + '</strong><br><small class="text-muted">/' + article.slug + '</small></td>' +
+      '<td>' + article.category + '</td>' +
+      '<td><span class="badge ' + article.status.toLowerCase() + '">' + article.status + '</span></td>' +
+      '<td>' + d + '</td>' +
+      '<td>' +
+        '<button class="btn-text" onclick="editArticle(\'' + article.id + '\')">Edit</button>' +
+        '<button class="btn-text" style="color:var(--danger)" onclick="deleteArticle(\'' + article.id + '\')">Delete</button>' +
+      '</td>' +
+    '</tr>';
   });
   
   tbody.innerHTML = html || '<tr><td colspan="5">No articles found.</td></tr>';
@@ -207,7 +233,7 @@ function resetEditor() {
 }
 
 function editArticle(id) {
-  const article = articlesData.find(a => a.id === id);
+  var article = articlesData.find(function(a) { return a.id === id; });
   if (!article) return;
   
   resetEditor();
@@ -230,20 +256,15 @@ function editArticle(id) {
 }
 
 async function saveArticle(status) {
-  if (GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE')) {
-    alert("Please set the GOOGLE_APPS_SCRIPT_URL in admin.js first.");
-    return;
-  }
-
-  const id = document.getElementById('edit-id').value;
-  const title = document.getElementById('edit-title').value;
+  var id = document.getElementById('edit-id').value;
+  var title = document.getElementById('edit-title').value;
   
   if (!title) {
     alert('Title is required');
     return;
   }
   
-  const payload = {
+  var payload = {
     title: title,
     content: document.getElementById('edit-content').value,
     excerpt: document.getElementById('edit-excerpt').value,
@@ -255,20 +276,19 @@ async function saveArticle(status) {
     metaDescription: document.getElementById('edit-meta-desc').value
   };
   
-  const action = id ? 'updateArticle' : 'createArticle';
+  var action = id ? 'updateArticle' : 'createArticle';
   if (id) payload.id = id;
   
-  // Show saving state
-  const btn = status === 'Published' ? 'btn-publish' : 'btn-save-draft';
-  const originalText = document.getElementById(btn).textContent;
+  var btn = status === 'Published' ? 'btn-publish' : 'btn-save-draft';
+  var originalText = document.getElementById(btn).textContent;
   document.getElementById(btn).textContent = 'Saving...';
   
-  const res = await apiRequest(action, payload);
+  var res = await apiRequest(action, payload);
   
   document.getElementById(btn).textContent = originalText;
   
   if (res.success) {
-    showToast(`Article ${status.toLowerCase()} successfully!`);
+    showToast('Article ' + status.toLowerCase() + ' successfully!');
     switchPanel('dashboard');
   } else {
     alert(res.error || 'Failed to save article.');
@@ -278,7 +298,7 @@ async function saveArticle(status) {
 async function deleteArticle(id) {
   if (!confirm('Are you sure you want to delete this article?')) return;
   
-  const res = await apiRequest('deleteArticle', { id });
+  var res = await apiRequest('deleteArticle', { id: id });
   if (res.success) {
     showToast('Article deleted.');
     fetchArticles();
@@ -288,9 +308,9 @@ async function deleteArticle(id) {
 }
 
 function updateSEOPreview() {
-  const title = document.getElementById('edit-seo-title').value || document.getElementById('edit-title').value || 'SEO Title Placeholder';
-  const desc = document.getElementById('edit-meta-desc').value || document.getElementById('edit-excerpt').value || 'Meta description placeholder...';
-  const slug = document.getElementById('edit-slug').value || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'your-slug';
+  var title = document.getElementById('edit-seo-title').value || document.getElementById('edit-title').value || 'SEO Title Placeholder';
+  var desc = document.getElementById('edit-meta-desc').value || document.getElementById('edit-excerpt').value || 'Meta description placeholder...';
+  var slug = document.getElementById('edit-slug').value || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'your-slug';
   
   document.getElementById('preview-title').textContent = title.substring(0, 60) + (title.length > 60 ? '...' : '');
   document.getElementById('preview-desc').textContent = desc.substring(0, 160) + (desc.length > 160 ? '...' : '');
