@@ -1444,10 +1444,17 @@ function initFormValidation() {
         success.classList.add('show');
       }
       
-      // TODO: Connect to backend (WhatsApp, Google Sheets, Email)
-      // Example WhatsApp integration:
-      // const msg = `Name: ${nameInput.value}%0APhone: ${phoneInput.value}%0AEmail: ${emailInput.value}%0ACourse: ${courseSelect.value}`;
-      // window.open(`https://wa.me/91${SITE_CONFIG.phone}?text=${msg}`, '_blank');
+      // Send data to WhatsApp
+      const courseName = courseSelect ? courseSelect.options[courseSelect.selectedIndex].text : 'General Enquiry';
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      
+      const msg = `Hello Rama Skill Academy, I have an enquiry:%0A%0A*Course:* ${courseName}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Email:* ${email}`;
+      const waUrl = `https://wa.me/91${SITE_CONFIG.phone}?text=${msg}`;
+      
+      // Redirect to WhatsApp
+      window.location.href = waUrl;
     }
   });
 
