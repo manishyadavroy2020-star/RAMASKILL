@@ -113,23 +113,30 @@ function doPost(e) {
 
 function handleRequest(e, method) {
   try {
-    const action = e.parameter.action;
+    let payload = {};
+    if (e.postData && e.postData.contents) {
+      try { payload = JSON.parse(e.postData.contents); } catch (err) {}
+    }
+    
+    const getParam = (key) => e.parameter[key] !== undefined ? e.parameter[key] : payload[key];
+    
+    const action = getParam('action');
     
     // Read operations (publicly accessible if no token provided, but restricted by status)
-    if (action === 'getArticles') return getArticles(e);
-    if (action === 'getArticle') return getArticle(e);
+    if (action === 'getArticles') return getArticles(getParam);
+    if (action === 'getArticle') return getArticle(getParam);
     if (action === 'getCategories') return getCategories();
     
     // Write operations require Authentication
-    const token = e.parameter.token || (e.postData && JSON.parse(e.postData.contents).token);
+    const token = getParam('token');
     if (token !== ADMIN_SECRET_TOKEN) {
       return jsonResponse({ success: false, error: 'Unauthorized' }, 401);
     }
     
     if (action === 'verifyLogin') return jsonResponse({ success: true });
-    if (action === 'createArticle') return createArticle(JSON.parse(e.postData.contents));
-    if (action === 'updateArticle') return updateArticle(JSON.parse(e.postData.contents));
-    if (action === 'deleteArticle') return deleteArticle(e.parameter.id);
+    if (action === 'createArticle') return createArticle(payload);
+    if (action === 'updateArticle') return updateArticle(payload);
+    if (action === 'deleteArticle') return deleteArticle(getParam('id'));
     
     return jsonResponse({ success: false, error: 'Unknown action' }, 400);
   } catch (error) {
@@ -145,12 +152,12 @@ function jsonResponse(data, code = 200) {
 
 // --- API CONTROLLERS ---
 
-function getArticles(e) {
+function getArticles(getParam) {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName('Articles');
   const data = getSheetDataAsObjects(sheet);
   
-  const token = e.parameter.token;
+  const token = getParam('token');
   let articles = data;
   
   // If not authenticated admin, only return published articles
@@ -177,9 +184,9 @@ function getArticles(e) {
   return jsonResponse({ success: true, data: articles });
 }
 
-function getArticle(e) {
-  const slug = e.parameter.slug;
-  const token = e.parameter.token;
+function getArticle(getParam) {
+  const slug = getParam('slug');
+  const token = getParam('token');
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sheet = ss.getSheetByName('Articles');
   const data = getSheetDataAsObjects(sheet);
