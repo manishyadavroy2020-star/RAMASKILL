@@ -664,7 +664,8 @@ p {
 .course-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--card);
   transition: transform var(--transition-slow);
 }
 
@@ -1192,7 +1193,8 @@ p {
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--card);
   transition: transform var(--transition-slow);
 }
 
@@ -1463,7 +1465,8 @@ p {
   width: 100%;
   height: auto;
   aspect-ratio: 16/9;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--card);
 }
 
 .course-detail-info {
