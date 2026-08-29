@@ -686,8 +686,8 @@ function renderHeader() {
 
   header.innerHTML = `
     <div class="container header-inner">
-      <a href="" class="logo" aria-label="Rama Skill Academy Home">
-        <img src="logo.jpeg" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
+      <a href="${ROOT}index.html" class="logo" aria-label="Rama Skill Academy Home">
+        <img src="${ROOT}logo.jpeg?v=2" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
         <span>Rama Skill Academy</span>
       </a>
       <nav class="nav-desktop" aria-label="Main Navigation">
@@ -754,8 +754,8 @@ function renderFooter() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="" class="logo">
-            <img src="logo.jpeg" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
+          <a href="${ROOT}index.html" class="logo">
+            <img src="${ROOT}logo.jpeg?v=2" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
             <span>Rama Skill Academy</span>
           </a>
           <p>${SITE_CONFIG.description}</p>
