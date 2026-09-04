@@ -687,8 +687,7 @@ function renderHeader() {
   header.innerHTML = `
     <div class="container header-inner">
       <a href="${ROOT}index.html" class="logo" aria-label="Rama Skill Academy Home">
-        <img src="${ROOT}logo.jpeg?v=3" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
-        <span>Rama Skill Academy</span>
+        <img src="${ROOT}logo.jpeg?v=4" alt="Rama Skill Academy" class="logo-img">
       </a>
       <nav class="nav-desktop" aria-label="Main Navigation">
         ${navLinks}
@@ -755,8 +754,7 @@ function renderFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="${ROOT}index.html" class="logo">
-            <img src="${ROOT}logo.jpeg?v=3" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
-            <span>Rama Skill Academy</span>
+            <img src="${ROOT}logo.jpeg?v=4" alt="Rama Skill Academy" class="logo-img">
           </a>
           <p>${SITE_CONFIG.description}</p>
         </div>
@@ -1550,8 +1548,9 @@ async function renderBlogPage() {
     grid.innerHTML = '<div style="grid-column:1/-1;text-align:center">Please configure the GOOGLE_APPS_SCRIPT_URL in script.js to view blog posts.</div>';
     return;
   }
-  
   try {
+    grid.innerHTML = Array(3).fill('<div class="skeleton-card skeleton"></div>').join('');
+    
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify({ action: 'getArticles' })

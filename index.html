@@ -160,43 +160,57 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // 1. Initial Skeletons
       const cg = document.getElementById('courses-grid');
-      if (cg) cg.innerHTML = COURSES.slice(0, 6).map(c => buildCourseCard(c)).join('');
-
+      if (cg) cg.innerHTML = Array(6).fill('<div class="skeleton-card skeleton"></div>').join('');
+      
       const fg = document.getElementById('features-grid');
-      if (fg) fg.innerHTML = WHY_CHOOSE_US.map((f, i) =>
-        `<div class="feature-card animate-on-scroll delay-${i%3+1}">
-          <div class="feature-icon">${f.icon}</div>
-          <h3>${f.title}</h3>
-          <p>${f.description}</p>
-        </div>`
-      ).join('');
+      if (fg) fg.innerHTML = Array(6).fill('<div class="feature-card skeleton" style="height:200px"></div>').join('');
 
       const sg = document.getElementById('success-grid');
-      if (sg) sg.innerHTML = SUCCESS_STORIES.map((s, i) =>
-        `<div class="success-card animate-on-scroll delay-${i%3+1}">
-          <div class="success-avatar">${s.initials}</div>
-          <h4>${s.name}</h4>
-          <div class="success-role">${s.role}</div>
-          <div class="success-company">${s.company}</div>
-          <p>"${s.text}"</p>
-        </div>`
-      ).join('');
+      if (sg) sg.innerHTML = Array(3).fill('<div class="success-card skeleton" style="height:250px"></div>').join('');
 
       const tg = document.getElementById('testimonials-grid');
-      if (tg) tg.innerHTML = TESTIMONIALS.map((t, i) =>
-        `<div class="testimonial-card animate-on-scroll delay-${i%3+1}">
-          <div class="testimonial-stars">${renderStars(t.rating)}</div>
-          <p class="testimonial-text">"${t.text}"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">${t.initials}</div>
-            <div class="testimonial-info">
-              <h4>${t.name}</h4>
-              <p>${t.course}</p>
+      if (tg) tg.innerHTML = Array(3).fill('<div class="testimonial-card skeleton" style="height:200px"></div>').join('');
+
+      // 2. Load Real Content after 500ms
+      setTimeout(() => {
+        if (cg) cg.innerHTML = COURSES.slice(0, 6).map(c => buildCourseCard(c)).join('');
+  
+        if (fg) fg.innerHTML = WHY_CHOOSE_US.map((f, i) =>
+          `<div class="feature-card animate-on-scroll delay-${i%3+1}">
+            <div class="feature-icon">${f.icon}</div>
+            <h3>${f.title}</h3>
+            <p>${f.description}</p>
+          </div>`
+        ).join('');
+  
+        if (sg) sg.innerHTML = SUCCESS_STORIES.map((s, i) =>
+          `<div class="success-card animate-on-scroll delay-${i%3+1}">
+            <div class="success-avatar">${s.initials}</div>
+            <h4>${s.name}</h4>
+            <div class="success-role">${s.role}</div>
+            <div class="success-company">${s.company}</div>
+            <p>"${s.text}"</p>
+          </div>`
+        ).join('');
+  
+        if (tg) tg.innerHTML = TESTIMONIALS.map((t, i) =>
+          `<div class="testimonial-card animate-on-scroll delay-${i%3+1}">
+            <div class="testimonial-stars">${renderStars(t.rating)}</div>
+            <p class="testimonial-text">"${t.text}"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">${t.initials}</div>
+              <div class="testimonial-info">
+                <h4>${t.name}</h4>
+                <p>${t.course}</p>
+              </div>
             </div>
-          </div>
-        </div>`
-      ).join('');
+          </div>`
+        ).join('');
+        
+        initScrollAnimations();
+      }, 500);
 
       const certList = document.getElementById('cert-features-list');
       if (certList) certList.innerHTML = CERTIFICATION_FEATURES.map(f =>

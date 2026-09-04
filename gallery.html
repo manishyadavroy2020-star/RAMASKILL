@@ -71,19 +71,27 @@
       if (images.length === 0) {
         container.innerHTML = `
           <div class="gallery-empty animate-on-scroll">
-            <div class="gallery-empty-icon">🖼️</div>
+            <div class="gallery-empty-icon">📸</div>
             <h3 style="font-size: 1.5rem; font-family: var(--font-heading);">Gallery Coming Soon</h3>
             <p>We are preparing an exciting collection of photos from our classroom sessions, practical workshops, student achievements, and events. Check back soon!</p>
           </div>
         `;
       } else {
-        container.innerHTML = '<div class="gallery-grid">' + images.map(img => 
-          `<div class="gallery-item animate-on-scroll" onclick="openLightbox('${img.src}', '${img.alt}')">
-            <img src="${img.src}" alt="${img.alt}" loading="lazy" width="400" height="300">
-          </div>`
-        ).join('') + '</div>';
+        container.innerHTML = '<div class="gallery-grid">' + Array(8).fill('<div class="skeleton-gallery skeleton"></div>').join('') + '</div>';
+        
+        setTimeout(() => {
+          container.innerHTML = '<div class="gallery-grid">' + images.map(img => 
+            `<div class="gallery-item animate-on-scroll" onclick="openLightbox('${img.src}', '${img.alt}')">
+              <img src="${img.src}" alt="${img.alt}" loading="lazy" width="400" height="300">
+              <div class="gallery-item-overlay">
+                <span>View Image</span>
+              </div>
+            </div>`
+          ).join('') + '</div>';
+          
+          if (typeof initScrollAnimations === 'function') initScrollAnimations();
+        }, 500);
       }
-      if (typeof initScrollAnimations === 'function') initScrollAnimations();
     });
   </script>
 </body>

@@ -74,8 +74,11 @@
     document.addEventListener('DOMContentLoaded', function() {
       const grid = document.getElementById('all-courses-grid');
       if (grid && typeof COURSES !== 'undefined' && typeof buildCourseCard === 'function') {
-        grid.innerHTML = COURSES.map(c => buildCourseCard(c)).join('');
-        if (typeof initScrollAnimations === 'function') initScrollAnimations();
+        grid.innerHTML = Array(8).fill('<div class="skeleton-card skeleton"></div>').join('');
+        setTimeout(() => {
+          grid.innerHTML = COURSES.map(c => buildCourseCard(c)).join('');
+          if (typeof initScrollAnimations === 'function') initScrollAnimations();
+        }, 500);
       }
     });
   </script>
