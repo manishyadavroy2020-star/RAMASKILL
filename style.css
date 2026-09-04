@@ -161,7 +161,7 @@ p {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #6366F1, #06B6D4, #F59E0B);
+  background: linear-gradient(135deg, #3B82F6, #06B6D4, #10B981, #F59E0B);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -742,7 +742,7 @@ p {
   font-weight: 700;
   margin-bottom: 0.75rem;
   font-family: var(--font-heading);
-  color: var(--foreground);
+  color: #1E1B4B;
 }
 
 .course-card-desc {

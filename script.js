@@ -548,7 +548,7 @@ const GALLERY_IMAGES = [
   { src: "ai web development.jpeg", alt: "AI Web Development Course at Rama Skill Academy", category: "Courses" },
   { src: "hotel management.jpeg", alt: "Hotel Management Vocational Course at Rama Skill Academy", category: "Courses" },
   { src: "hotel management 2.jpeg", alt: "Hotel Management Training at Rama Skill Academy", category: "Courses" },
-  { src: "logo.jpeg", alt: "Rama Skill Academy Logo", category: "Academy" }
+  { src: "logo.jpeg?v=3", alt: "Rama Skill Academy Logo", category: "Academy" }
 ];
 
 const WHY_CHOOSE_US = [
@@ -687,7 +687,7 @@ function renderHeader() {
   header.innerHTML = `
     <div class="container header-inner">
       <a href="${ROOT}index.html" class="logo" aria-label="Rama Skill Academy Home">
-        <img src="${ROOT}logo.jpeg?v=2" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
+        <img src="${ROOT}logo.jpeg?v=3" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
         <span>Rama Skill Academy</span>
       </a>
       <nav class="nav-desktop" aria-label="Main Navigation">
@@ -755,7 +755,7 @@ function renderFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="${ROOT}index.html" class="logo">
-            <img src="${ROOT}logo.jpeg?v=2" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
+            <img src="${ROOT}logo.jpeg?v=3" alt="Rama Skill Academy" class="logo-img" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">
             <span>Rama Skill Academy</span>
           </a>
           <p>${SITE_CONFIG.description}</p>
